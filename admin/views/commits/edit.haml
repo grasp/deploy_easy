@@ -1,0 +1,8 @@
+%ul.nav.nav-tabs
+  %li=link_to tag_icon(:list, pat(:list)), url(:commits, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:commits, :new)
+  %li.active=link_to tag_icon(:edit, pat(:edit)), url(:commits, :edit, :id => @commit.id)
+
+.tabs-content
+  = form_for :commit, url(:commits, :update, :id => @commit.id), :method => :put, :class => 'form-horizontal' do |f|
+    =partial 'commits/form', :locals => { :f => f }

@@ -1,0 +1,76 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:projects, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:projects, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon('check-square-o', pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon('square-o', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon('trash-o', pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    = form_tag url(:projects, :destroy_many), :method => :delete do
+                      =hidden_field_tag :project_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:project, :created_at)
+        %th.header= mat(:project, :updated_at)
+        %th.header= mat(:project, :name)
+        %th.header= mat(:project, :git)
+        %th.header= mat(:project, :git_user)
+        %th.header= mat(:project, :git_pwd)
+        %th.header= mat(:project, :local_dir)
+        %th.header= mat(:project, :local_server)
+        %th.header= mat(:project, :local_user)
+        %th.header= mat(:project, :local_pwd)
+        %th.header= mat(:project, :remote_server)
+        %th.header= mat(:project, :server_user)
+        %th.header= mat(:project, :server_pwd)
+        %th.header= mat(:project, :remote_dir)
+        %th.header= mat(:project, :command)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@projects.each do |project|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'project_ids[]', :value => project.id, :class => 'list-selectable-checkbox'
+          %td.list-column=time_ago_in_words project.created_at
+          %td.list-column=time_ago_in_words project.updated_at
+          %td.list-column=project.name
+          %td.list-column=project.git
+          %td.list-column=project.git_user
+          %td.list-column=project.git_pwd
+          %td.list-column=project.local_dir
+          %td.list-column=project.local_server
+          %td.list-column=project.local_user
+          %td.list-column=project.local_pwd
+          %td.list-column=project.remote_server
+          %td.list-column=project.server_user
+          %td.list-column=project.server_pwd
+          %td.list-column=project.remote_dir
+          %td.list-column=project.command
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:projects, :edit, :id => project.id), :rel => :tooltip, :title => "#{pat(:edit)} project", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} project", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "project")
+                .popover-content
+                  = form_tag url(:projects, :destroy, :id => project.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-default.btn-small.cancel=pat(:cancel)

@@ -1,0 +1,21 @@
+%ol.breadcrumb{"style"=>"padding-bottom:0px;"}
+  -if@setting
+    %li.breadcrumb-item=link_to @setting.project_name||"TBD" ,url(:base,:home)
+  -else
+    %li.breadcrumb-item=link_to "TBD" ,url(:base,:home)
+
+
+  %li.breadcrumb-item.dropdown
+
+    %button.btn.btn-link.dropdown-toggle.p-x-0{"type"=>"button","id"=>"dropdownMenu1","data-toggle"=>"dropdown","aria-haspopup"=>"false","aria-expanded"=>"false","style"=>"padding-top:0px;"} 项目
+
+    .dropdown-menu{"aria-labelledby"=>"dropdownMenu1"}
+      =link_to "全部项目",url(:projects,:index),:class=>"dropdown-item"
+      =link_to "新建项目",url(:projects,:new),:class=>"dropdown-item"
+  
+  %li.breadcrumb-item.m-r-0
+    =link_to "新建项目",url(:projects,:new),:class=>"btn btn-primary"
+
+     
+        
+

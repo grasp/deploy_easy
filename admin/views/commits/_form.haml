@@ -1,0 +1,37 @@
+- error = @commit.errors.include?(:message)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :message, :class => 'control-label'
+  .controls
+    =f.text_field :message, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:message, :class => 'text-error') : pat(:example)
+- error = @commit.errors.include?(:project)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :project, :class => 'control-label'
+  .controls
+    =f.text_field :project, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:project, :class => 'text-error') : pat(:example)
+- error = @commit.errors.include?(:project_id)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :project_id, :class => 'control-label'
+  .controls
+    =f.text_field :project_id, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:project_id, :class => 'text-error') : pat(:example)
+- error = @commit.errors.include?(:log)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :log, :class => 'control-label'
+  .controls
+    =f.text_field :log, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:log, :class => 'text-error') : pat(:example)
+- error = @commit.errors.include?(:result)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :result, :class => 'control-label'
+  .controls
+    =f.text_field :result, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:result, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:commits, :index), :class => 'btn btn-default'

@@ -1,0 +1,85 @@
+- error = @project.errors.include?(:name)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :name, :class => 'control-label'
+  .controls
+    =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:git)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :git, :class => 'control-label'
+  .controls
+    =f.text_field :git, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:git, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:git_user)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :git_user, :class => 'control-label'
+  .controls
+    =f.text_field :git_user, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:git_user, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:git_pwd)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :git_pwd, :class => 'control-label'
+  .controls
+    =f.text_field :git_pwd, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:git_pwd, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:local_dir)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :local_dir, :class => 'control-label'
+  .controls
+    =f.text_field :local_dir, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:local_dir, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:local_server)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :local_server, :class => 'control-label'
+  .controls
+    =f.text_field :local_server, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:local_server, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:local_user)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :local_user, :class => 'control-label'
+  .controls
+    =f.text_field :local_user, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:local_user, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:local_pwd)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :local_pwd, :class => 'control-label'
+  .controls
+    =f.text_field :local_pwd, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:local_pwd, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:remote_server)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :remote_server, :class => 'control-label'
+  .controls
+    =f.text_field :remote_server, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:remote_server, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:server_user)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :server_user, :class => 'control-label'
+  .controls
+    =f.text_field :server_user, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:server_user, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:server_pwd)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :server_pwd, :class => 'control-label'
+  .controls
+    =f.text_field :server_pwd, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:server_pwd, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:remote_dir)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :remote_dir, :class => 'control-label'
+  .controls
+    =f.text_field :remote_dir, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:remote_dir, :class => 'text-error') : pat(:example)
+- error = @project.errors.include?(:command)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :command, :class => 'control-label'
+  .controls
+    =f.text_field :command, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:command, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:projects, :index), :class => 'btn btn-default'

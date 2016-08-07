@@ -1,0 +1,40 @@
+%h2.text-lg-center 用户注册
+%form{"action"=>"/accounts/user_register","method"=>"post"}
+  %input{"type"=>"hidden","name"=>"authenticity_token","value"=>session["csrf"]}
+  %fieldset.form-group
+    .row
+      .col-md-1.col-md-offset-3
+        %label{"for"=>"formusername"} 用户名
+      .col-md-4
+        %input{"type"=>"text","name"=>"accounts[name]","class"=>"form-control","id"=>"formusername","placeholder"=>"用户名","required"=>"","autofocus"=>""}
+
+  %fieldset.form-group
+    .row
+      .col-md-1.col-md-offset-3
+        %label{"for"=>"formpwd"} 密码
+      .col-md-4
+        %input{"type"=>"password","name"=>"accounts[password]","class"=>"form-control","id"=>"formpwd","placeholder"=>"六位以上密码","required"=>"","minlength"=>6}
+
+  %fieldset.form-group
+    .row
+      .col-md-1.col-md-offset-3
+        %label{"for"=>"formpwdconfirm"} 确认密码
+      .col-md-4
+        %input{"type"=>"password","name"=>"accounts[password_confirm]","class"=>"form-control","id"=>"formpwdconfirm","placeholder"=>"确认密码","required"=>"","minlength"=>6}
+  %fieldset.form-group
+    .row
+      .col-md-1.col-md-offset-3
+
+        %label{"for"=>"formemail"} 邮箱
+      .col-md-4
+        %input{"type"=>"email","name"=>"accounts[email]","class"=>"form-control","id"=>"formemail","placeholder"=>"电子邮箱","required"=>"","inputmode"=>"email"}
+
+  %fieldset.form-group
+    .row
+      .col-md-1.col-md-offset-3
+        %label{"for"=>"formmphone"} 手机
+      .col-md-4
+        %input{"type"=>"tel","name"=>"accounts[mphone]","class"=>"form-control","id"=>"formmphone","placeholder"=>"手机","required"=>"","inputmode"=>"numeric"}
+
+  %fieldset.form-group
+    %input{"type"=>"submit","value"=>"提交","class"=>"btn btn-primary"}

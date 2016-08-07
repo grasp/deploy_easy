@@ -1,0 +1,75 @@
+!!! 5
+%html{:lang => 'en'}
+  %head
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    %meta{:content => 'text/html; charset=utf-8', 'http-equiv' => 'Content-Type'}
+    %meta{:name => :viewport, :content => 'width=device-width,initial-scale=1'}
+    %title= @title.present? ? "#{@title} | DeployEasy" : "DeployEasy"
+    =favicon_tag 'logo.png'
+
+    =stylesheet_link_tag "normalize","bootstrap.min","animate","font-awesome.min","layout","select2.min","under_track"
+
+
+  %body
+    %nav.navbar.navbar-light.bg-faded{"style"=>"padding-top:20px;"}
+      %a.nav.navbar-nav.navbar-brand{"href"=>"/"}
+        %img{"src"=>"/images/logo.png","width"=>"30px;"}
+
+      %ul.nav.navbar-nav
+        %li.nav-item
+          %a.nav-link{"href"=>"/base/home","style"=>"color:black;font-size:110%"}DeployEasy
+
+        
+        %li.nav-item
+         
+          %a.nav-link{"href"=>url(:projects,:index)}
+            %span.fa.fa-list
+              全部项目
+
+        %li.nav-item
+         
+          %a.nav-link{"href"=>url(:commits,:index)}
+            %span.fa.fa-list
+              全部提交
+
+
+
+        %li.nav-item
+
+          %a.nav-link{"href"=>url(:base,:help)}
+            %span.fa.fa-question-circle-o
+              使用帮助
+
+      %ul.nav.navbar-nav.pull-xs-right
+        -unless current_account
+          %li.nav-item
+            %a.nav-link{"href"=>"/accounts/user_register","class"=>"btn btn-success","style"=>"color:white;"} 注册
+
+          %li.nav-item
+            %a.nav-link{"href"=>"/sessions/new_manage","class"=>"btn btn-warning-outline","style"=>"color:black;"} 登录
+        -else
+          %li.nav-item
+            %a.nav-link{"href"=>"/base/home","class"=>"btn btn-success","style"=>"color:white;"} 项目动态
+
+          %li.nav-item
+            %form{"action"=>"/sessions/destroy_manage","method"=>"post"}
+              %input{"type"=>"hidden","name"=>"authenticity_token","value"=>session["csrf"]}
+              %input{"type"=>"submit","value"=>" 登出","class"=>"btn btn-warning-outline","style"=>"color:black;"}
+
+    .container-fluid
+      ={:error => 'danger', :warning => 'warning', :success => 'success', :notice => 'info'}.map { |type, class_name| flash_tag(type, :class => "alert alert-#{class_name} fade in", :bootstrap => true) }.join.html_safe
+      .row=yield
+  
+    %footer.footer.text-lg-center
+      .container-fluid
+        %p.center-block.text-muted
+          Copyright &copy;
+          =Time.now.year
+          杭州网络技术有限公司
+        
+
+
+    =javascript_include_tag "jquery-2.2.4.min","tether.min","bootstrap.min","select2.min","under_track","application"
